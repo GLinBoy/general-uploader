@@ -1,11 +1,15 @@
 import os
 from flask import Flask, flash, request, redirect, render_template
 from werkzeug.utils import secure_filename
+import netifaces
+from flask_qrcode import QRcode
+
 
 app=Flask(__name__)
-
+port = 5000
 app.secret_key = "secret key"
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+QRcode(app)
 
 # Get current path
 path = os.getcwd()
@@ -28,7 +32,8 @@ def allowed_file(filename):
 
 @app.route('/')
 def upload_form():
-    return render_template('upload.html')
+    ipAddr = netifaces.ifaddresses(netifaces.gateways()['default'][netifaces.AF_INET][1])[netifaces.AF_INET][0]['addr']
+    return render_template('upload.html', address = 'http://{}:{}'.format(ipAddr, port))
 
 
 @app.route('/', methods=['POST'])
@@ -51,4 +56,4 @@ def upload_file():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=5000,debug=False,threaded=True)
+    app.run(host='0.0.0.0',port=port,debug=False,threaded=True)

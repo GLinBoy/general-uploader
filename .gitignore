@@ -323,3 +323,6 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/venv,vscode,python,intellij+all,macos,linux,windows
 
+
+
+uploads/

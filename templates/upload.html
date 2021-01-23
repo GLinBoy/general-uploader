@@ -1,24 +1,50 @@
-<!doctype html>
-<title>Python Flask Multiple Files Upload Example</title>
-<h2>Select file(s) to upload</h2>
-<p>
-	{% with messages = get_flashed_messages() %}
-	  {% if messages %}
-		<ul class=flashes>
-		{% for message in messages %}
-		  <li>{{ message }}</li>
-		{% endfor %}
-		</ul>
-	  {% endif %}
-	{% endwith %}
-</p>
-<form method="post" action="/" enctype="multipart/form-data">
-    <dl>
-		<p>
-			<input type="file" name="files[]" multiple="true" autocomplete="off" required>
-		</p>
-    </dl>
-    <p>
-		<input type="submit" value="Submit">
-	</p>
-</form>
+<html lang="en">
+  <meta charset="UTF-8" />
+  <head>
+	<title>Python Flask Multiple Files Upload Example</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+  </head>
+  <body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container">
+		  <a class="navbar-brand" href="#">
+			<img src={{ url_for('static', filename = 'images/upload.svg') }} alt="" width="30" class="d-inline-block align-top">
+			Uploader
+		  </a>
+		</div>
+	</nav>
+    <main id="app" class="container">
+		<div class="row justify-content-md-center">
+			<div class="col-sm-6">
+				{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					{% for message in messages %}
+						<div class="alert alert-success" role="alert">
+							{{ message }}
+						</div>
+					{% endfor %}
+				{% endif %}
+				{% endwith %}
+			</div>
+		</div>
+		<div class="row justify-content-md-center">
+			<div class="col-sm-6">
+				<form method="post" action="/" enctype="multipart/form-data">
+					<div class="mb-3">
+						<label for="files" class="form-label">Files: </label>
+						<input type="file" id="files" name="files[]" multiple="true" class="form-control"
+							autocomplete="off" required aria-describedby="filesHelp">
+						<div id="filesHelp" class="form-text">Select files to upload</div>
+					</div>
+					<div class="d-grid gap-2 d-md-block">
+						<input type="submit" value="Submit" class="btn btn-primary">
+					</div>
+				</form>
+			</div>
+		</div>
+	</main>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>

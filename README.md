@@ -1,6 +1,6 @@
 # Uploader
 
-A simple uploader to help me upload my files from my phon to my PPC/Laptop
+A simple uploader to help me upload my files from my phon to my PC/Laptop
 
 ## Summary
 

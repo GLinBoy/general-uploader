@@ -8,7 +8,7 @@ from flask_qrcode import QRcode
 app=Flask(__name__)
 port = 5000
 app.secret_key = "secret key"
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024 * 1024
 QRcode(app)
 
 # Get current path
@@ -47,7 +47,7 @@ def upload_file():
         files = request.files.getlist('files[]')
 
         for file in files:
-            if file and allowed_file(file.filename):
+            if file :
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 

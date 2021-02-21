@@ -42,7 +42,7 @@ Uploader needs python 3.x to run;
 
 4. Run application with this command:
 
-    gunicorn -w 1 -b 0.0.0.0:5000 app:app
+    gunicorn -w 1 -b 0.0.0.0:5000 app:app --timeout=600
 
 ### Installing
 

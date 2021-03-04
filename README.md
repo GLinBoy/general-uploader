@@ -36,11 +36,15 @@ Uploader needs python 3.x to run;
 
     python3 -m venv .venv
 
-3. install dependencies:
+4. (Optional) load the virual env:
+
+    source ./venv/bin/activate
+
+5. install dependencies:
 
     pip install -r requirements.txt
 
-4. Run application with this command:
+6. Run application with this command:
 
     gunicorn -w 1 -b 0.0.0.0:5000 app:app --timeout=600
 
